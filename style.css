@@ -2634,3 +2634,39 @@ a:hover img.fade { -ms-filter: "alpha( opacity=70 )"; background: none !importan
 .pb80 { padding-bottom: 80px !important; }
 
 .pl80 { padding-left: 80px !important; }
+
+
+/* ++++++++++++++++++++++++++++++++++++++++++++++++++
+custom style
++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+/* header */
+.l-header__contact {
+  display: flex;
+}
+
+.l-header__custom-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #fff;
+  color: #111;
+  font-size: 1.875rem;
+  border-radius: 8px;
+}
+
+.l-header__custom-link .material-symbols-outlined {
+  font-size: 24px;
+  color: #111;
+}
+
+
+/* front-page */
+.custom_cv {
+  margin: 32px 0;
+}
+
+.custom_cv__link-image {
+  width: 100%;
+}
