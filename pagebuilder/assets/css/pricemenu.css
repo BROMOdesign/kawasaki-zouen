@@ -1,0 +1,12 @@
+@charset "utf-8";
+.pb-pricemenu .pb-pricemenu__list { border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; position: relative; padding: 10px 0; width: 100%; margin: 0; }
+.pb-pricemenu__list + .pb-pricemenu__list { border-top: 0; }
+.pb-pricemenu .pb-pricemenu__list-title { font-weight: 700; line-height: 2; margin-bottom: 1px; }
+.pb-pricemenu .pb-pricemenu__list-desc { line-height: 2; margin: 0; }
+.pb-pricemenu .pb-pricemenu__list-price { font-weight: 700; position: absolute; top: 17px; right: 0; line-height: 1; margin-bottom: 0; }
+
+@media only screen and (max-width:767px) {
+  .pb-pricemenu .pb-pricemenu__list { padding: 8px 0 15px; }
+.pb-pricemenu .pb-pricemenu__list-desc { margin-bottom: 8px; }
+  .pb-pricemenu .pb-pricemenu__list-price { position: static; text-align: right; }
+}
