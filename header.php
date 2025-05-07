@@ -62,13 +62,13 @@ $args = array(
           <?php get_template_part('template-parts/contact-info'); ?>
              
         </div>
-           <?php endif; ?>
         <a href="https://lin.ee/Wk2oMn8" class="l-header__custom-link">
-            <span class="material-symbols-outlined">
-              chat_bubble
-            </span>
-            LINE
-          </a>
+          <span class="material-symbols-outlined">
+            chat_bubble
+          </span>
+          LINE
+        </a>
+           <?php endif; ?>
     </div>
     <a href="#" id="js-menu-btn" class="p-menu-btn c-menu-btn"></a>
     <?php wp_nav_menu($args); ?>
