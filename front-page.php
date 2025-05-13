@@ -192,7 +192,6 @@ get_header();
       <section class="custom_cv">
         <a href="https://lin.ee/Wk2oMn8" class="custom_cv__link">
           <picture>
-            <source srcset="<?php echo esc_url(get_theme_file_uri());?>/assets/images/cv_link_sp.png" media="(max-width: 768px)">
             <img src="<?php echo esc_url(get_theme_file_uri());?>/assets/images/cv_link_pc.png" alt="お問い合わせはLINEから お友達登録" class="custom_cv__link-image">
           </picture>
         </a>
