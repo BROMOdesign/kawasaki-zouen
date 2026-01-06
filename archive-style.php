@@ -5,7 +5,7 @@ get_header();
       <div id="js-search" class="p-search">
         <div class="p-search__header">
           <h2 class="p-search__title"><?php echo esc_html( $options['style_search_title'] ); ?></h2>
-          <p class="p-search__sub"><?php echo esc_html( $options['style_search_sub_title'] ); ?></p>
+          <p class="p-search__sub">加工内容をクリックして絞り込み</p>
         </div>
         <form id="js-search__form" class="p-search__form" method="POST" action="<?php echo esc_url( get_post_type_archive_link( 'style' ) ); ?>">
           <div class="p-search__elem">
@@ -64,7 +64,7 @@ get_header();
             </fieldset>
             <?php endif; ?>
           </div>
-          <input id="js-search__submit" class="p-search__submit p-btn" type="submit" value="<?php echo esc_attr( $options['style_search_btn_label'] ); ?>">
+          <input id="js-search__submit" class="p-search__submit p-btn" type="submit" value="<?php echo esc_attr( $options['style_search_btn_label'] ); ?>" style="display:none;">
         </form>
       </div>
       <div id="js-category-description" class="p-category-description" style="display:none;">
