@@ -16,10 +16,32 @@ jQuery(function($) {
     // Get submit button
     var $button = $form.find('#js-search__submit');
 
+    // Collect descriptions from checked checkboxes
+    var descriptions = [];
+    $form.find('.p-search-list__item-checkbox:checked').each(function() {
+      var description = $(this).data('description');
+      if (description && description.trim() !== '') {
+        descriptions.push(description);
+      }
+    });
+
+    // Display or hide category descriptions
+    var $descriptionBlock = $('#js-category-description');
+    var $descriptionContent = $descriptionBlock.find('.p-category-description__content');
+
+
+    if (descriptions.length > 0) {
+      $descriptionContent.html(descriptions.join('<br>'));
+      $descriptionBlock.show();
+    } else {
+      $descriptionContent.html('');
+      $descriptionBlock.hide();
+    }
+
     // Get scroll distance to #js-search-result
     var scrollDistance = $('#js-search-result').offset().top - parseInt($('#js-search').css('margin-bottom'));
     if ($('#js-header').hasClass('l-header--fixed')) {
-      scrollDistance -= $('#js-header').height(); 
+      scrollDistance -= $('#js-header').height();
     }
 
     // Display the ajax loader icon

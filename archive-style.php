@@ -17,12 +17,12 @@ get_header();
                 if ( $terms = get_terms( $options['style_cat' . $i] ) ) : 
                   $style_cat = esc_attr( $options['style_cat' . $i] );
             ?>
-            <fieldset class="p-search__elem-item">
+            <fieldset class="p-search__elem-item" data-category="<?php echo $style_cat; ?>">
               <legend class="p-search__elem-item-title"><?php printf( __( 'Search by %s', 'tcd-w' ), esc_html( $options['style_cat_label' . $i] ) ); ?></legend>
               <ul class="p-search__elem-item-list p-search-list">
                 <?php foreach ( $terms as $term ) : ?>
                 <li>
-                  <input type="checkbox" id="<?php echo $style_cat; ?>-<?php echo esc_attr( $term->term_id ); ?>" class="p-search-list__item-checkbox" name="search_cat<?php echo $i; ?>[]" value="<?php echo esc_attr( $term->term_id ); ?>">
+                  <input type="checkbox" id="<?php echo $style_cat; ?>-<?php echo esc_attr( $term->term_id ); ?>" class="p-search-list__item-checkbox" name="search_cat<?php echo $i; ?>[]" value="<?php echo esc_attr( $term->term_id ); ?>" data-description="<?php echo esc_attr( $term->description ); ?>">
                   <label class="p-search-list__item-label" for="<?php echo $style_cat; ?>-<?php echo esc_attr( $term->term_id ); ?>"><?php echo esc_html( $term->name ); ?></label>
                 </li>
                 <?php endforeach; ?>
@@ -43,12 +43,12 @@ get_header();
               );
               $staff_query = new WP_Query( $staff_args );
             ?>
-            <fieldset class="p-search__elem-item">
+            <fieldset class="p-search__elem-item" data-category="staff">
               <legend class="p-search__elem-item-title"><?php printf( __( 'Search by %s', 'tcd-w' ), esc_html( $staff_label ) ); ?></legend>
               <?php if ( $staff_query->have_posts() ) : ?>
               <ul class="p-search__elem-item-list p-search-list">
-                <?php 
-                while ( $staff_query->have_posts() ) : 
+                <?php
+                while ( $staff_query->have_posts() ) :
                   $staff_query->the_post();
                 ?>
                 <li>
@@ -66,6 +66,9 @@ get_header();
           </div>
           <input id="js-search__submit" class="p-search__submit p-btn" type="submit" value="<?php echo esc_attr( $options['style_search_btn_label'] ); ?>">
         </form>
+      </div>
+      <div id="js-category-description" class="p-category-description" style="display:none;">
+        <div class="p-category-description__content"></div>
       </div>
       <div id="js-search-result" class="p-search-result">
         <ul class="p-style-list">
