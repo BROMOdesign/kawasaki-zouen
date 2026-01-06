@@ -6,6 +6,18 @@ jQuery(function($) {
   // Create a image element with ajaxLoaderPath
   var ajaxLoaderImg = $('<img class="p-search-result__loader" alt="">').attr('src', ajaxLoaderPath);
 
+  // Auto-submit on checkbox click (single selection only)
+  $('.p-search-list__item-checkbox').on('click', function() {
+    var $this = $(this);
+    var $form = $('#js-search__form');
+
+    // Uncheck all other checkboxes
+    $form.find('.p-search-list__item-checkbox').not($this).prop('checked', false);
+
+    // Auto-submit the form
+    $form.submit();
+  });
+
   $('#js-search__form').submit(function(event) {
 
     event.preventDefault();

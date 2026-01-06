@@ -1592,6 +1592,9 @@ li { list-style-type: none; }
 
 .p-search-result__loader { display: block; margin: 0 auto; }
 
+/* Category description */
+.p-category-description { margin-bottom: 30px; }
+
 /* Search */
 .p-search { margin-bottom: 50px; padding: 40px 30px; background: #f4f4f4; }
 
