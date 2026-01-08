@@ -70,9 +70,35 @@ $args = array(
         </a>
            <?php endif; ?>
     </div>
+  </header>
+  <?php if ( wp_is_mobile() ) : ?>
+    <!-- SP専用: 横スクロールメニュー -->
+    <nav id="js-scroll-menu" class="p-scroll-menu">
+      <button type="button" class="p-scroll-menu__arrow p-scroll-menu__arrow--prev">
+        <img src="<?php echo esc_attr( get_template_directory_uri() . '/assets/images/chevron-left.svg' ); ?>" alt="">
+      </button>
+
+      <div class="p-scroll-menu__wrapper">
+        <?php
+          wp_nav_menu( array(
+            'theme_location' => 'global',
+            'container' => false,
+            'items_wrap' => '<ul class="p-scroll-menu__list">%3$s</ul>',
+            'walker' => new Scroll_Menu_Walker(),
+            'fallback_cb' => false
+          ));
+        ?>
+      </div>
+
+      <button type="button" class="p-scroll-menu__arrow p-scroll-menu__arrow--next">
+        <img src="<?php echo esc_attr( get_template_directory_uri() . '/assets/images/chevron-right.svg' ); ?>" alt="">
+      </button>
+    </nav>
+  <?php else : ?>
+    <!-- PC: 既存のグローバルナビ -->
     <a href="#" id="js-menu-btn" class="p-menu-btn c-menu-btn"></a>
     <?php wp_nav_menu($args); ?>
-  </header>
+  <?php endif; ?>
   <main class="l-main">
     <?php if (! is_front_page()) : ?>
       <?php get_template_part('template-parts/breadcrumb'); ?>

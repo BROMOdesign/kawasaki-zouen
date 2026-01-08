@@ -302,7 +302,7 @@ function beauty_scripts() {
   wp_enqueue_style( 'beauty-slick-theme', get_template_directory_uri() . '/assets/css/slick-theme.min.css' );
   wp_enqueue_script( 'beauty-slick', get_template_directory_uri() . '/assets/js/slick.min.js', array( 'jquery' ), version_num(), false );
   wp_enqueue_style( 'beauty-style', get_stylesheet_uri(), false, version_num() );
-  wp_enqueue_script( 'beauty-script', get_template_directory_uri() . '/assets/js/functions.min.js', array( 'jquery', 'beauty-slick' ), version_num(), true );
+  wp_enqueue_script( 'beauty-script', get_template_directory_uri() . '/assets/js/functions.js', array( 'jquery', 'beauty-slick' ), version_num(), true );
 
   if ( is_front_page() && 'type3' === $options['header_content_type'] ) {
     wp_enqueue_style( 'beauty-youtube', get_template_directory_uri() . '/assets/css/jquery.mb.YTPlayer.min.css' );
@@ -367,6 +367,44 @@ function description_in_nav_menu( $item_output, $item ) {
 	return preg_replace( '/(<a.*?>[^<]*?)</', '$1' . '<span class="sub-title">' . $item->description . '</span><', $item_output );
 }
 add_filter( 'walker_nav_menu_start_el', 'description_in_nav_menu', 10, 4 );
+
+/**
+ * Custom Menu Walker for SP Scroll Menu
+ */
+class Scroll_Menu_Walker extends Walker_Nav_Menu {
+  function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
+    $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+    $output .= $indent . '<li class="p-scroll-menu__item">';
+
+    $atts = array();
+    $atts['href'] = ! empty( $item->url ) ? $item->url : '';
+    $atts['class'] = 'p-scroll-menu__link';
+
+    $attributes = '';
+    foreach ( $atts as $attr => $value ) {
+      if ( ! empty( $value ) ) {
+        $value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+        $attributes .= ' ' . $attr . '="' . $value . '"';
+      }
+    }
+
+    $title = apply_filters( 'the_title', $item->title, $item->ID );
+
+    $link = '<a' . $attributes . '>';
+    $link .= '<span class="p-scroll-menu__title">' . esc_html( $title ) . '</span>';
+
+    if ( ! empty( $item->description ) ) {
+      $link .= '<span class="p-scroll-menu__subtitle">' . esc_html( $item->description ) . '</span>';
+    }
+
+    $link .= '</a>';
+    $output .= $link;
+  }
+
+  function end_el( &$output, $item, $depth = 0, $args = null ) {
+    $output .= "</li>\n";
+  }
+}
 
 /**
  * Add favicon
