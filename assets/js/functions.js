@@ -55,6 +55,7 @@ jQuery(document).ready(function($) {
       infinite: true,
       slidesToShow: 3,
       slidesToScroll: 1,
+      swipeToSlide: true,
       arrows: true,
       prevArrow: $('.p-scroll-menu__arrow--prev'),
       nextArrow: $('.p-scroll-menu__arrow--next'),
