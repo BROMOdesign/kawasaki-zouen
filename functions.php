@@ -302,7 +302,7 @@ function beauty_scripts() {
   wp_enqueue_style( 'beauty-slick-theme', get_template_directory_uri() . '/assets/css/slick-theme.min.css' );
   wp_enqueue_script( 'beauty-slick', get_template_directory_uri() . '/assets/js/slick.min.js', array( 'jquery' ), version_num(), false );
   wp_enqueue_style( 'beauty-style', get_stylesheet_uri(), false, version_num() );
-  wp_enqueue_script( 'beauty-script', get_template_directory_uri() . '/assets/js/functions.js', array( 'jquery', 'beauty-slick' ), version_num(), true );
+  wp_enqueue_script( 'beauty-script', get_template_directory_uri() . '/assets/js/functions.min.js', array( 'jquery', 'beauty-slick' ), version_num(), true );
 
   if ( is_front_page() && 'type3' === $options['header_content_type'] ) {
     wp_enqueue_style( 'beauty-youtube', get_template_directory_uri() . '/assets/css/jquery.mb.YTPlayer.min.css' );

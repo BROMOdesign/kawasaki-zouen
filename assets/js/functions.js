@@ -50,11 +50,8 @@ jQuery(document).ready(function($) {
   }
 
   // SP Scroll Menu
-  var $scrollMenuList = $('.p-scroll-menu__list');
-  if ($scrollMenuList.length) {
-    console.log('Initializing scroll menu...', $scrollMenuList);
-
-    $scrollMenuList.slick({
+  if ($('.p-scroll-menu__list').length) {
+    $('.p-scroll-menu__list').slick({
       infinite: true,
       slidesToShow: 3,
       slidesToScroll: 1,
@@ -73,10 +70,6 @@ jQuery(document).ready(function($) {
         }
       ]
     });
-
-    console.log('Scroll menu initialized');
-  } else {
-    console.log('Scroll menu not found');
   }
 
   // Pagetop
