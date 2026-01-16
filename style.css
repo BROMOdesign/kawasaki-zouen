@@ -1594,7 +1594,11 @@ li { list-style-type: none; }
 .p-search-result__loader { display: block; margin: 0 auto; }
 
 /* Category description */
-.p-category-description { margin-bottom: 30px; }
+.p-category-description { margin-bottom: 30px; padding-bottom: 16px; border-bottom: 1px solid #ccc; }
+
+.p-category-description__content { display: block; font-size: 14px; font-weight: normal; line-height: 1.5; }
+
+.p-category-description__content strong { display: block; font-size: 18px; font-weight: bold; line-height: 1.25; margin-bottom: 8px; }
 
 /* Search */
 .p-search { margin-bottom: 50px; padding: 40px 30px; background: #f4f4f4; }
