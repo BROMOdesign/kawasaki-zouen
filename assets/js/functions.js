@@ -49,6 +49,30 @@ jQuery(document).ready(function($) {
     });
   }
 
+  // SP Scroll Menu
+  if ($('.p-scroll-menu__list').length) {
+    $('.p-scroll-menu__list').slick({
+      infinite: true,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      swipeToSlide: true,
+      arrows: true,
+      prevArrow: $('.p-scroll-menu__arrow--prev'),
+      nextArrow: $('.p-scroll-menu__arrow--next'),
+      variableWidth: false,
+      centerMode: false,
+      responsive: [
+        {
+          breakpoint: 768,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    });
+  }
+
   // Pagetop
   var pagetop = $('#js-pagetop');
   $(window).scroll(function() {

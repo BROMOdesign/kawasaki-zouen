@@ -369,6 +369,44 @@ function description_in_nav_menu( $item_output, $item ) {
 add_filter( 'walker_nav_menu_start_el', 'description_in_nav_menu', 10, 4 );
 
 /**
+ * Custom Menu Walker for SP Scroll Menu
+ */
+class Scroll_Menu_Walker extends Walker_Nav_Menu {
+  function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
+    $indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
+    $output .= $indent . '<li class="p-scroll-menu__item">';
+
+    $atts = array();
+    $atts['href'] = ! empty( $item->url ) ? $item->url : '';
+    $atts['class'] = 'p-scroll-menu__link';
+
+    $attributes = '';
+    foreach ( $atts as $attr => $value ) {
+      if ( ! empty( $value ) ) {
+        $value = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+        $attributes .= ' ' . $attr . '="' . $value . '"';
+      }
+    }
+
+    $title = apply_filters( 'the_title', $item->title, $item->ID );
+
+    $link = '<a' . $attributes . '>';
+    $link .= '<span class="p-scroll-menu__title">' . esc_html( $title ) . '</span>';
+
+    if ( ! empty( $item->description ) ) {
+      $link .= '<span class="p-scroll-menu__subtitle">' . esc_html( $item->description ) . '</span>';
+    }
+
+    $link .= '</a>';
+    $output .= $link;
+  }
+
+  function end_el( &$output, $item, $depth = 0, $args = null ) {
+    $output .= "</li>\n";
+  }
+}
+
+/**
  * Add favicon
  */
 function beauty_add_favicon() {
