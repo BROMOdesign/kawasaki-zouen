@@ -6,7 +6,7 @@ Description:WordPressテーマ「Beauty」は、ヘアサロンや美容室を�
 Author:TCD
 Author URI:https://tcd-theme.com/
 Text Domain: tcd-w
-Version:1.6.1
+Version:999.9.0
 */
 /* ========================================================================== Foundation ========================================================================== */
 /* Normalize ----------------------------------------------------------------- */
@@ -1591,6 +1591,9 @@ li { list-style-type: none; }
 .p-search-result { margin-bottom: 20px; }
 
 .p-search-result__loader { display: block; margin: 0 auto; }
+
+/* Category description */
+.p-category-description { margin-bottom: 30px; }
 
 /* Search */
 .p-search { margin-bottom: 50px; padding: 40px 30px; background: #f4f4f4; }

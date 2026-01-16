@@ -6,6 +6,18 @@ jQuery(function($) {
   // Create a image element with ajaxLoaderPath
   var ajaxLoaderImg = $('<img class="p-search-result__loader" alt="">').attr('src', ajaxLoaderPath);
 
+  // Auto-submit on checkbox click (single selection only)
+  $('.p-search-list__item-checkbox').on('click', function() {
+    var $this = $(this);
+    var $form = $('#js-search__form');
+
+    // Uncheck all other checkboxes
+    $form.find('.p-search-list__item-checkbox').not($this).prop('checked', false);
+
+    // Auto-submit the form
+    $form.submit();
+  });
+
   $('#js-search__form').submit(function(event) {
 
     event.preventDefault();
@@ -16,10 +28,32 @@ jQuery(function($) {
     // Get submit button
     var $button = $form.find('#js-search__submit');
 
+    // Collect descriptions from checked checkboxes
+    var descriptions = [];
+    $form.find('.p-search-list__item-checkbox:checked').each(function() {
+      var description = $(this).data('description');
+      if (description && description.trim() !== '') {
+        descriptions.push(description);
+      }
+    });
+
+    // Display or hide category descriptions
+    var $descriptionBlock = $('#js-category-description');
+    var $descriptionContent = $descriptionBlock.find('.p-category-description__content');
+
+
+    if (descriptions.length > 0) {
+      $descriptionContent.html(descriptions.join('<br>'));
+      $descriptionBlock.show();
+    } else {
+      $descriptionContent.html('');
+      $descriptionBlock.hide();
+    }
+
     // Get scroll distance to #js-search-result
     var scrollDistance = $('#js-search-result').offset().top - parseInt($('#js-search').css('margin-bottom'));
     if ($('#js-header').hasClass('l-header--fixed')) {
-      scrollDistance -= $('#js-header').height(); 
+      scrollDistance -= $('#js-header').height();
     }
 
     // Display the ajax loader icon
