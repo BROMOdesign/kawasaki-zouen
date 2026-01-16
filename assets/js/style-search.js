@@ -28,12 +28,18 @@ jQuery(function($) {
     // Get submit button
     var $button = $form.find('#js-search__submit');
 
-    // Collect descriptions from checked checkboxes
-    var descriptions = [];
+    // Collect names and descriptions from checked checkboxes
+    var categoryInfo = [];
     $form.find('.p-search-list__item-checkbox:checked').each(function() {
+      var name = $(this).data('name');
       var description = $(this).data('description');
-      if (description && description.trim() !== '') {
-        descriptions.push(description);
+
+      if (name) {
+        var info = '<strong>' + name + '</strong>';
+        if (description && description.trim() !== '') {
+          info += description;
+        }
+        categoryInfo.push(info);
       }
     });
 
@@ -41,17 +47,17 @@ jQuery(function($) {
     var $descriptionBlock = $('#js-category-description');
     var $descriptionContent = $descriptionBlock.find('.p-category-description__content');
 
-
-    if (descriptions.length > 0) {
-      $descriptionContent.html(descriptions.join('<br>'));
+    if (categoryInfo.length > 0) {
+      $descriptionContent.html(categoryInfo.join('<br><br>'));
       $descriptionBlock.show();
     } else {
       $descriptionContent.html('');
       $descriptionBlock.hide();
     }
 
-    // Get scroll distance to #js-search-result
-    var scrollDistance = $('#js-search-result').offset().top - parseInt($('#js-search').css('margin-bottom'));
+    // Get scroll distance - scroll to description if shown, otherwise to search result
+    var $scrollTarget = categoryInfo.length > 0 ? $descriptionBlock : $('#js-search-result');
+    var scrollDistance = $scrollTarget.offset().top - parseInt($('#js-search').css('margin-bottom'));
     if ($('#js-header').hasClass('l-header--fixed')) {
       scrollDistance -= $('#js-header').height();
     }
@@ -59,10 +65,10 @@ jQuery(function($) {
     // Display the ajax loader icon
     $('#js-search-result').html(ajaxLoaderImg);
 
-    // Scroll to #js-search-result
+    // Scroll to target element
     $('body, html').animate({
       scrollTop: scrollDistance + 'px'
-    }, 1000);
+    }, 800);
 
     // Submit data by AJAX
     $.ajax({

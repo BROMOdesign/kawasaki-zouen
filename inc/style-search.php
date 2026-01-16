@@ -98,7 +98,7 @@ function search_style_list() {
     wp_reset_postdata();
 
   } else {
-    $output .= '<p class="u-center">' . __( 'There is no registered contents.', 'tcd-w' ) . '</p>' . "\n";
+    $output .= '<p class="u-center">施工例が見つかりませんでした。</p>' . "\n";
   }
 
   $output .= '</ul>' . "\n";
